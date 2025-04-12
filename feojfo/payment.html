@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Same header styles -->
+</head>
+<body>
+    <header class="shop-header">
+        <link rel="styleheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="styleheet" href="checkout.css">
+        <!-- In your <head> -->
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
+
+
+
+
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Shop</a>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </div>
+    </header>
+
+    <div class="payment-container">
+        <h1>Checkout</h1>
+        
+        <div class="payment-items">
+            <!-- Cart items will be populated here -->
+        </div>
+
+        <div class="payment-total">
+            Total: $<span id="paymentTotal">0.00</span>
+        </div>
+
+        <form class="payment-form">
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="text" placeholder="Card Number" required>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <input type="text" placeholder="MM/YY" required>
+                <input type="text" placeholder="CVC" required>
+            </div>
+            <button type="submit" class="add-to-cart">Complete Payment</button>
+        </form>
+    </div>
+
+    <script>
+        // Load cart items
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const paymentItems = document.querySelector('.payment-items');
+        const paymentTotal = document.querySelector('#paymentTotal');
+
+        // Display cart items
+        cart.forEach(item => {
+            paymentItems.innerHTML += `
+                <div class="payment-item">
+                    <img src="${item.image}" width="60" height="60">
+                    <div>${item.name}</div>
+                    <div>$${item.price} x ${item.quantity}</div>
+                </div>
+            `;
+        });
+
+        // Calculate total
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        paymentTotal.textContent = total.toFixed(2);
+
+        // Handle form submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('cart');
+            alert('Payment successful! Thank you for your purchase.');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProFitness Gym</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">ProFitness</div>
+        <nav>
+            <div id="navLinks">
+                <!-- Navigation links will be dynamically injected by script.js -->
+            </div>
+        </nav>
+    </header>
+
+    <!-- Exercise Categories Section -->
+    <div class="exercise-categories">
+        <h2>Exercise Categories</h2>
+        <div class="category-grid">
+            <div class="category-card" onclick="window.location.href='exercises.html?category=arms'">
+                <img src="arm-icon.png" alt="Arms">
+                <h3>Arm Exercises</h3>
+            </div>
+            <div class="category-card" onclick="window.location.href='exercises.html?category=legs'">
+                <img src="leg-icon.png" alt="Legs">
+                <h3>Leg Exercises</h3>
+            </div>
+            <!-- Add more categories as needed -->
+        </div>
+    </div>
+
+    <!-- Routine Creation & Display (Only for Logged-In Users) -->
+    <div class="container fade-in">
+        <div id="userContent" style="display: none;">
+            <h2>Create New Routine</h2>
+            <form id="routineForm" onsubmit="saveRoutine(event)">
+                <div class="form-group">
+                    <label>Routine Name:</label>
+                    <input type="text" id="routineName" required>
+                </div>
+                <div class="form-group">
+                    <label>Training Focus:</label>
+                    <select id="routineFocus">
+                        <option value="strength">Strength</option>
+                        <option value="cardio">Cardio</option>
+                        <option value="flexibility">Flexibility</option>
+                    </select>
+                </div>
+                <button type="submit">Save Routine</button>
+            </form>
+
+            <h3>Your Saved Routines</h3>
+            <div id="savedRoutines"></div>
+        </div>
+    </div>
+
+    <!-- Placeholder for other sections like Exercise Planner, First Aid, etc. -->
+    <div class="container fade-in">
+        <!-- Future content goes here -->
+    </div>
+
+    <!-- Firebase App & Script Initialization -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script> <!-- Your Firebase config file -->
+    <script src="script.js"></script> <!-- Your main logic -->
+</body>
+</html>
